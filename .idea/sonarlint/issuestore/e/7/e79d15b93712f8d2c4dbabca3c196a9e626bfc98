@@ -1,0 +1,21 @@
+
+]squid:UselessImportCheck";Remove this unused import 'cn.dk.shiro.domain.PurchaseLog'.(ã—Üý
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(Áò”8ãúÛÖ›.
+~squid:S1488"jImmediately return this expression instead of assigning it to the temporary variable "useAccessoriesLogs".(Ìí´l
+esquid:UselessImportCheck">Remove this unused import 'cn.dk.shiro.dao.PurchaseLogMapper'.(è‘”Úøÿÿÿÿ
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(þ¿«ïþÿÿÿÿ8ßçåÖ›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Â¸­‡ýÿÿÿÿ8•ùÚô›.
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(“•Ú„
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(êû×ùÿÿÿÿ
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(ï‘øó8›ñÞõ›.
+Ç%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(ÂÁùýýÿÿÿÿ8öŒóÖ›.
+lsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¼ýåúÿÿÿÿ8’–åÖ›.
+L
+squid:S106"9Replace this use of System.out or System.err by a logger.(ò€ø=
+R
+squid:S106"9Replace this use of System.out or System.err by a logger.(êÖŠüÿÿÿÿ
+M
+squid:S106"9Replace this use of System.out or System.err by a logger.(âòÈÆ

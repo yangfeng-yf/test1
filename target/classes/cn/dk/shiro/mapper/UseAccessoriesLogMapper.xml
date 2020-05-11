@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.UseAccessoriesLogMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.UseAccessoriesLog">
+    <id column="count_id" jdbcType="INTEGER" property="countId" />
+    <result column="c_countid" jdbcType="INTEGER" property="cCountid" />
+    <result column="accessory" jdbcType="VARCHAR" property="accessory" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="application_time" jdbcType="TIMESTAMP" property="applicationTime" />
+    <result column="get_type" jdbcType="INTEGER" property="getType" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    count_id, c_countid, accessory, num, username, application_time, get_type, price
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from use_accessories_log
+    where count_id = #{countId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from use_accessories_log
+    where username = #{accessoryName,jdbcType=STRING}
+  </select>
+
+
+
+  <!--条件查询配件信息-->
+  <select id="findByCondi" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from use_accessories_log
+    WHERE
+    <if test="param1 == 'count_id'">
+      count_id
+    </if>
+    <if test="param1 == 'c_countid'">
+      c_countid
+    </if>
+    <if test="param1 == 'a_id'">
+      a_id
+    </if>
+    <if test="param1 == 'ad_id'">
+      ad_id
+    </if>
+
+    =  #{value1}
+  </select>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from use_accessories_log
+  </select>
+
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from use_accessories_log
+    where count_id = #{countId,jdbcType=INTEGER}
+  </delete>
+
+
+
+  <!--<select id="findAllType" resultMap="java.util.Map">-->
+    <!--select  count(*) c,m_type  m FROM maintenance_registration_log  GROUP BY m_type-->
+  <!--</select>-->
+
+  <insert id="insert" parameterType="cn.dk.shiro.domain.UseAccessoriesLog">
+    insert into use_accessories_log (count_id, c_countid, a_id, 
+      num, ad_id, application_time, 
+      get_type, price)
+    values (#{countId,jdbcType=INTEGER}, #{cCountid,jdbcType=INTEGER}, #{aId,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER}, #{adId,jdbcType=INTEGER}, #{applicationTime,jdbcType=TIMESTAMP}, 
+      #{getType,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE})
+  </insert>
+
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.UseAccessoriesLog">
+    insert into use_accessories_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="countId != null">
+        count_id,
+      </if>
+      <if test="cCountid != null">
+        c_countid,
+      </if>
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="applicationTime != null">
+        application_time,
+      </if>
+      <if test="getType != null">
+        get_type,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="countId != null">
+        #{countId,jdbcType=INTEGER},
+      </if>
+      <if test="cCountid != null">
+        #{cCountid,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null">
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="adId != null">
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationTime != null">
+        #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="getType != null">
+        #{getType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.UseAccessoriesLog">
+    update use_accessories_log
+    <set>
+      <if test="cCountid != null">
+        c_countid = #{cCountid,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null">
+        a_id = #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="adId != null">
+        ad_id = #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationTime != null">
+        application_time = #{applicationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="getType != null">
+        get_type = #{getType,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where count_id = #{countId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.UseAccessoriesLog">
+    update use_accessories_log
+    set c_countid = #{cCountid,jdbcType=INTEGER},
+      a_id = #{aId,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      ad_id = #{adId,jdbcType=INTEGER},
+      application_time = #{applicationTime,jdbcType=TIMESTAMP},
+      get_type = #{getType,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE}
+    where count_id = #{countId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateTypeByPrimaryKey" parameterType="java.lang.Integer">
+    update use_accessories_log
+    set get_type = #{getType,jdbcType=INTEGER}
+    where count_id = #{countId,jdbcType=INTEGER}
+  </update>
+
+
+
+
+</mapper>

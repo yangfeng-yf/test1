@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.SupplierInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.SupplierInfo">
+    <id column="s_id" jdbcType="INTEGER" property="sId" />
+    <result column="s_campanyname" jdbcType="VARCHAR" property="sCampanyname" />
+    <result column="s_address" jdbcType="VARCHAR" property="sAddress" />
+    <result column="s_phone" jdbcType="VARCHAR" property="sPhone" />
+    <result column="s_person_liable" jdbcType="VARCHAR" property="sPersonLiable" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    s_id, s_campanyname, s_address, s_phone, s_person_liable
+  </sql>
+  <!--查询所有供货商信息-->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from supplier_info
+  </select>
+  <!--条件查询供货商信息-->
+  <select id="findSupplierInfoByCondi" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from supplier_info
+    WHERE
+    <if test="param1 == 's_id'">
+      s_id
+    </if>
+    <if test="param1 == 's_address'">
+      s_address
+    </if>
+    <if test="param1 == 's_campanyname'">
+      s_campanyname
+    </if>
+    =  #{value1}
+  </select>
+
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from supplier_info
+    where s_id = #{sId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from supplier_info
+    where s_id = #{sId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dk.shiro.domain.SupplierInfo">
+    insert into supplier_info (s_id, s_campanyname, s_address, 
+      s_phone, s_person_liable)
+    values (#{sId,jdbcType=INTEGER}, #{sCampanyname,jdbcType=VARCHAR}, #{sAddress,jdbcType=VARCHAR}, 
+      #{sPhone,jdbcType=VARCHAR}, #{sPersonLiable,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.SupplierInfo">
+    insert into supplier_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        s_id,
+      </if>
+      <if test="sCampanyname != null">
+        s_campanyname,
+      </if>
+      <if test="sAddress != null">
+        s_address,
+      </if>
+      <if test="sPhone != null">
+        s_phone,
+      </if>
+      <if test="sPersonLiable != null">
+        s_person_liable,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sId != null">
+        #{sId,jdbcType=INTEGER},
+      </if>
+      <if test="sCampanyname != null">
+        #{sCampanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sPhone != null">
+        #{sPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sPersonLiable != null">
+        #{sPersonLiable,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.SupplierInfo">
+    update supplier_info
+    <set>
+      <if test="sCampanyname != null">
+        s_campanyname = #{sCampanyname,jdbcType=VARCHAR},
+      </if>
+      <if test="sAddress != null">
+        s_address = #{sAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sPhone != null">
+        s_phone = #{sPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sPersonLiable != null">
+        s_person_liable = #{sPersonLiable,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.SupplierInfo">
+    update supplier_info
+    set s_campanyname = #{sCampanyname,jdbcType=VARCHAR},
+      s_address = #{sAddress,jdbcType=VARCHAR},
+      s_phone = #{sPhone,jdbcType=VARCHAR},
+      s_person_liable = #{sPersonLiable,jdbcType=VARCHAR}
+    where s_id = #{sId,jdbcType=INTEGER}
+  </update>
+</mapper>

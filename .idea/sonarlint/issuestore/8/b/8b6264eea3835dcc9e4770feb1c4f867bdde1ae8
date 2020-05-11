@@ -1,0 +1,36 @@
+
+esquid:UselessImportCheck"7Remove this unused import 'cn.dk.shiro.domain.CarInfo'.(üåûÿÿÿÿ8ÿÀ˜Ó›.
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(Î’¶Ú8ÿÀ˜Ó›.
+~squid:S1488"bImmediately return this expression instead of assigning it to the temporary variable "adminInfos".(Ò“¯à8ÿÀ˜Ó›.
+Ç%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(¾½²¢şÿÿÿÿ8ÿÀ˜Ó›.
+Asquid:S1481"&Remove this unused "x" local variable.(§³­#8ÿÀ˜Ó›.
+~squid:S1488"]Immediately return this expression instead of assigning it to the temporary variable "admin".(Œ âıÿÿÿÿ8ÿÀ˜Ó›.
+Ksquid:S00108")Either remove or fill this block of code.(¶÷Í«ûÿÿÿÿ8ÿÀ˜Ó›.
+}squid:S1488"bImmediately return this expression instead of assigning it to the temporary variable "adminInfos".(ğÜ—^8ÿÀ˜Ó›.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÿâğƒ8ÿÀ˜Ó›.
+Ç%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(é¶ù·üÿÿÿÿ8ÿÀ˜Ó›.
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(¬®İ8ÿÀ˜Ó›.
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(şì8ÿÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(œÍÂôşÿÿÿÿ8ÿÀ˜Ó›.
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(Ú± 8ÿÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ú ƒ¹ÿÿÿÿÿ8ÿÀ˜Ó›.
+Psquid:S1854"5Remove this useless assignment to local variable "x".(§³­#8ÿÀ˜Ó›.
+~squid:S1488"bImmediately return this expression instead of assigning it to the temporary variable "adminInfos".(Ò“¯à8ÿÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ºêÎÔüÿÿÿÿ8ÿÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(êÖŠüÿÿÿÿ8ÿÀ˜Ó›.
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(€ÓŒĞ8ÿÀ˜Ó›.
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(ãğË8ÿÀ˜Ó›.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(“•Ú„8ÿÀ˜Ó›.
+Ksquid:S00108")Either remove or fill this block of code.(áñÊøÿÿÿÿ8ÿÀ˜Ó›.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ä·üÄ8ÿÀ˜Ó›.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÿöã¿8ÿÀ˜Ó›.
+asquid:UselessImportCheck"8Remove this unused import 'cn.dk.shiro.domain.UserInfo'.(ÚñÖğ8ÿÀ˜Ó›.
+‚squid:S1488"aImmediately return this expression instead of assigning it to the temporary variable "adminInfo".(©ØåÛşÿÿÿÿ8ÿÀ˜Ó›.

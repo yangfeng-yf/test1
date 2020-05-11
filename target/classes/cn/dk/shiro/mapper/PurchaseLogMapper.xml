@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.PurchaseLogMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.PurchaseLog">
+    <id column="count_id" jdbcType="INTEGER" property="countId" />
+    <result column="a_id" jdbcType="INTEGER" property="aId" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="lastentertime" jdbcType="TIMESTAMP" property="lastentertime" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="request_pepple_id" jdbcType="INTEGER" property="requestPeppleId" />
+    <result column="p_status" jdbcType="INTEGER" property="pStatus" />
+    <result column="approver_id" jdbcType="INTEGER" property="approverId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    count_id, a_id, num, lastentertime, price, request_pepple_id, p_status, approver_id
+  </sql>
+
+  <!--查询所有日志信息-->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from purchase_log
+  </select>
+  <!--条件查询日志信息-->
+  <select id="findByCondi" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from purchase_log
+    WHERE
+    <if test="param1 == 'count_id'">
+      count_id
+    </if>
+    <if test="param1 == 'a_id'">
+      a_id
+    </if>
+    <if test="param1 == 'request_pepple_id'">
+      request_pepple_id
+    </if>
+    <if test="param1 == 'p_status'">
+      p_status
+    </if>
+    <if test="param1 == 'approver_id'">
+      approver_id
+    </if>
+    =  #{vlaue1}
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from purchase_log
+    where count_id = #{countId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from purchase_log
+    where count_id = #{countId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dk.shiro.domain.PurchaseLog">
+    insert into purchase_log (count_id, a_id, num, 
+      lastentertime, price, request_pepple_id, 
+      p_status, approver_id)
+    values (#{countId,jdbcType=INTEGER}, #{aId,jdbcType=INTEGER}, #{num,jdbcType=INTEGER}, 
+      #{lastentertime,jdbcType=TIMESTAMP}, #{price,jdbcType=DOUBLE}, #{requestPeppleId,jdbcType=INTEGER}, 
+      #{pStatus,jdbcType=INTEGER}, #{approverId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.PurchaseLog">
+    insert into purchase_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="countId != null">
+        count_id,
+      </if>
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="num != null">
+        num,
+      </if>
+      <if test="lastentertime != null">
+        lastentertime,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="requestPeppleId != null">
+        request_pepple_id,
+      </if>
+      <if test="pStatus != null">
+        p_status,
+      </if>
+      <if test="approverId != null">
+        approver_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="countId != null">
+        #{countId,jdbcType=INTEGER},
+      </if>
+      <if test="aId != null">
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="lastentertime != null">
+        #{lastentertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="requestPeppleId != null">
+        #{requestPeppleId,jdbcType=INTEGER},
+      </if>
+      <if test="pStatus != null">
+        #{pStatus,jdbcType=INTEGER},
+      </if>
+      <if test="approverId != null">
+        #{approverId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.PurchaseLog">
+    update purchase_log
+    <set>
+      <if test="aId != null">
+        a_id = #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="num != null">
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="lastentertime != null">
+        lastentertime = #{lastentertime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="requestPeppleId != null">
+        request_pepple_id = #{requestPeppleId,jdbcType=INTEGER},
+      </if>
+      <if test="pStatus != null">
+        p_status = #{pStatus,jdbcType=INTEGER},
+      </if>
+      <if test="approverId != null">
+        approver_id = #{approverId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where count_id = #{countId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.PurchaseLog">
+    update purchase_log
+    set a_id = #{aId,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      lastentertime = #{lastentertime,jdbcType=TIMESTAMP},
+      price = #{price,jdbcType=DOUBLE},
+      request_pepple_id = #{requestPeppleId,jdbcType=INTEGER},
+      p_status = #{pStatus,jdbcType=INTEGER},
+      approver_id = #{approverId,jdbcType=INTEGER}
+    where count_id = #{countId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updatePStatusAndApproverIdByPrimaryKey" parameterType="java.lang.Integer">
+    update purchase_log
+    set p_status = #{pStatus},
+     approver_id = #{approverId}
+    where count_id = #{countId}
+  </update>
+</mapper>

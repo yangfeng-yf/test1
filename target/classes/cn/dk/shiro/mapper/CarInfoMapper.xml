@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.CarInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.CarInfo">
+    <id column="count_id" jdbcType="INTEGER" property="countId" />
+    <result column="c_type" jdbcType="VARCHAR" property="cType" />
+    <result column="c_brand" jdbcType="VARCHAR" property="cBrand" />
+    <result column="c_person" jdbcType="VARCHAR" property="cPerson" />
+    <result column="c_createtime" jdbcType="TIMESTAMP" property="cCreatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    count_id, c_type, c_brand, c_person, c_createtime
+  </sql>
+
+
+
+  <!--查询所有车辆信息-->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from car_info
+  </select>
+
+
+
+  <select id="findAllType" resultType="java.util.Map" >
+      select count(*) num, c_tardemark tardemark
+      from car_info
+      GROUP BY c_tardemark
+  </select>
+
+  <!--条件查询车辆信息-->
+  <select id="findCarInfoByCondi" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from car_info
+     WHERE
+    <if test="param1 == 'c_id'">
+      c_id
+    </if>
+    <if test="param1 == 'c_u_id'">
+      c_u_id
+    </if>
+    <if test="param1 == 'c_tardemark'">
+      c_tardemark
+    </if>
+    <if test="param1 == 'c_engine_number'">
+      c_engine_number
+    </if>
+    <if test="param1 == 'count_id'">
+      count_id
+    </if>
+    =  #{value1}
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from car_info
+    where count_id = #{countId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from car_info
+    where count_id = #{countId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="cn.dk.shiro.domain.CarInfo">
+    insert into car_info (count_id, c_type, c_brand, c_person, c_createtime)
+    values (#{countId,jdbcType=INTEGER}, #{cType,jdbcType=VARCHAR}, #{cBrand,jdbcType=VARCHAR},
+      #{cPerson,jdbcType=VARCHAR}, #{cCreatetime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.CarInfo">
+    insert into car_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="countId != null">
+        count_id,
+      </if>
+      <if test="cId != null">
+        c_id,
+      </if>
+      <if test="cUId != null">
+        c_u_id,
+      </if>
+      <if test="cEngineNumber != null">
+        c_engine_number,
+      </if>
+      <if test="cTardemark != null">
+        c_tardemark,
+      </if>
+      <if test="cInsertinfotime != null">
+        c_insertInfoTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="countId != null">
+        #{countId,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null">
+        #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="cUId != null">
+        #{cUId,jdbcType=INTEGER},
+      </if>
+      <if test="cEngineNumber != null">
+        #{cEngineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cTardemark != null">
+        #{cTardemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cInsertinfotime != null">
+        #{cInsertinfotime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.CarInfo">
+    update car_info
+    <set>
+      <if test="cId != null">
+        c_id = #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="cUId != null">
+        c_u_id = #{cUId,jdbcType=INTEGER},
+      </if>
+      <if test="cEngineNumber != null">
+        c_engine_number = #{cEngineNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="cTardemark != null">
+        c_tardemark = #{cTardemark,jdbcType=VARCHAR},
+      </if>
+      <if test="cInsertinfotime != null">
+        c_insertInfoTime = #{cInsertinfotime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where count_id = #{countId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.CarInfo">
+    update car_info
+    set c_id = #{cId,jdbcType=VARCHAR},
+      c_u_id = #{cUId,jdbcType=INTEGER},
+      c_engine_number = #{cEngineNumber,jdbcType=VARCHAR},
+      c_tardemark = #{cTardemark,jdbcType=VARCHAR},
+      c_insertInfoTime = #{cInsertinfotime,jdbcType=TIMESTAMP}
+    where count_id = #{countId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:aop="http://www.springframework.org/schema/aop" xmlns:jee="http://www.springframework.org/schema/jee"
+	   xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+	<!--1:配置DI注解解析器-->
+	<context:annotation-config/>
+	<!--2:配置IoC注解解析器-->
+	<context:component-scan base-package="cn.dk.shiro"/>
+	<!--3：配置mvc注解解析器-->
+	<mvc:annotation-driven/>
+	<!-- 扫描的包路径，这里不扫描被@Controller注解的类 --><!--使用<context:component-scan/> 可以不在配置<context:annotation-config/> -->
+	<context:component-scan base-package="cn.dk.shiro.web.controller">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<!--4：静态资源处理-->
+	<mvc:default-servlet-handler/>
+	<mvc:resources mapping="/css/**" location="/WEB-INF/statics/css/"/>
+	<mvc:resources mapping="/js/**" location="/WEB-INF/statics/js/"/>
+	<mvc:resources mapping="/images/**" location="/WEB-INF/statics/image/"/>
+	<mvc:resources mapping="/font/**" location="/WEB-INF/statics/font/"/>
+	<mvc:resources mapping="/json/**" location="/WEB-INF/statics/json/"/>
+	<mvc:resources mapping="/skin/**" location="/WEB-INF/statics/skin/"/>
+
+	<!--5：配置视图解析器-->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<!--6：引入shiro配置文件-->
+	<import resource="classpath:spring-shiro.xml"></import>
+
+	<!--7：引入spring配置文件-->
+	<import resource="classpath:spring.xml"></import>
+
+
+
+
+
+</beans>

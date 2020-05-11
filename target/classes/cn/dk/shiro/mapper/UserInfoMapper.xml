@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.UserInfo">
+    <id column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="u_name" jdbcType="VARCHAR" property="uName" />
+    <result column="u_phone" jdbcType="VARCHAR" property="uPhone" />
+    <result column="u_address" jdbcType="VARCHAR" property="uAddress" />
+    <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
+    <result column="u_createtime" jdbcType="TIMESTAMP" property="uCreatetime" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    u_id, u_name, u_phone, u_address, u_password, u_createtime
+  </sql>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+
+  <select id="findAllType" resultType="java.util.Map" >
+    select  u_address name,count(*) value
+    from user_info
+    GROUP BY u_address
+  </select>
+
+  <!--条件查询-->
+  <select id="selectByCondition"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where
+    <if test="param1 == 'u_name'">
+      u_name
+    </if>
+    <if test="param1 == 'u_id'">
+      u_id
+    </if>
+    <if test="param1 == 'u_address'">
+      u_address
+    </if>
+    <if test="param1 == 'u_phone'">
+      u_phone
+    </if>
+     =  #{value1}
+  </select>
+
+  <!--查询所有用户信息-->
+  <select id="selectAll"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List"  />
+    from user_info
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user_info
+    where u_id = #{uId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="cn.dk.shiro.domain.UserInfo">
+    insert into user_info (u_id, u_name, u_phone,
+      u_address,u_password,u_createtime
+      )
+    values (#{uId,jdbcType=INTEGER}, #{uName,jdbcType=VARCHAR}, #{uPhone,jdbcType=VARCHAR},
+    #{uAddress,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, #{uCreatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.UserInfo">
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uName != null">
+        u_name,
+      </if>
+      <if test="uPhone != null">
+        u_phone,
+      </if>
+      <if test="uAddress != null">
+        u_address,
+      </if>
+      <if test="uPassword != null">
+        u_password,
+      </if>
+      <if test="uCreatetime != null">
+        u_lastlogintime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null">
+        #{uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uAddress != null">
+        #{uAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreatetime != null">
+        #{uLastlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.UserInfo">
+    update user_info
+    <set>
+      <if test="uName != null">
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPhone != null">
+        u_phone = #{uPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="uAddress != null">
+        u_address = #{uAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uCreatetime != null">
+        u_lastlogintime = #{uLastlogintime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.UserInfo">
+    update user_info
+    set u_name = #{uName,jdbcType=VARCHAR},
+      u_phone = #{uPhone,jdbcType=VARCHAR},
+      u_address = #{uAddress,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_createtime = #{uCreatetime,jdbcType=TIMESTAMP}
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+</mapper>

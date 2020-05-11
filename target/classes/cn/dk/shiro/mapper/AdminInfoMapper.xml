@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.AdminInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.AdminInfo">
+    <id column="ad_id" jdbcType="INTEGER" property="adId" />
+    <result column="ad_type" jdbcType="BIGINT" property="adType" />
+    <result column="ad_phone" jdbcType="VARCHAR" property="adPhone" />
+    <result column="ad_password" jdbcType="VARCHAR" property="adPassword" />
+    <result column="ad_lastlogintime" jdbcType="TIMESTAMP" property="adLastlogintime" />
+    <result column="ad_name" jdbcType="VARCHAR" property="adName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ad_id, ad_type, ad_phone, ad_password, ad_lastlogintime, ad_name
+  </sql>
+  <!--查询所有-->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin_info
+
+  </select>
+  <!--条件查询管理员信息-->
+  <select id="findAdminInfoByCondi" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from admin_info
+    WHERE
+    <if test="param1 == 'ad_id'">
+      ad_id
+    </if>
+    <if test="param1 == 'ad_type'">
+      ad_type
+    </if>
+    <if test="param1 == 'ad_phone'">
+      ad_phone
+    </if>
+    <if test="param1 == 'ad_name'">
+      ad_name
+    </if>
+
+    =  #{value1}
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from admin_info
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from admin_info
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dk.shiro.domain.AdminInfo">
+    insert into admin_info (ad_id, ad_type, ad_phone, 
+      ad_password, ad_lastlogintime, ad_name
+      )
+    values (#{adId,jdbcType=INTEGER}, #{adType,jdbcType=BIGINT}, #{adPhone,jdbcType=VARCHAR}, 
+      #{adPassword,jdbcType=VARCHAR}, #{adLastlogintime,jdbcType=TIMESTAMP}, #{adName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.AdminInfo">
+    insert into admin_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        ad_id,
+      </if>
+      <if test="adType != null">
+        ad_type,
+      </if>
+      <if test="adPhone != null">
+        ad_phone,
+      </if>
+      <if test="adPassword != null">
+        ad_password,
+      </if>
+      <if test="adLastlogintime != null">
+        ad_lastlogintime,
+      </if>
+      <if test="adName != null">
+        ad_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="adId != null">
+        #{adId,jdbcType=INTEGER},
+      </if>
+      <if test="adType != null">
+        #{adType,jdbcType=BIGINT},
+      </if>
+      <if test="adPhone != null">
+        #{adPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adPassword != null">
+        #{adPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adLastlogintime != null">
+        #{adLastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adName != null">
+        #{adName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.AdminInfo">
+    update admin_info
+    <set>
+      <if test="adType != null">
+        ad_type = #{adType,jdbcType=BIGINT},
+      </if>
+      <if test="adPhone != null">
+        ad_phone = #{adPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="adPassword != null">
+        ad_password = #{adPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="adLastlogintime != null">
+        ad_lastlogintime = #{adLastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="adName != null">
+        ad_name = #{adName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.AdminInfo">
+    update admin_info
+    set ad_type = #{adType,jdbcType=BIGINT},
+      ad_phone = #{adPhone,jdbcType=VARCHAR},
+      ad_password = #{adPassword,jdbcType=VARCHAR},
+      ad_lastlogintime = #{adLastlogintime,jdbcType=TIMESTAMP},
+      ad_name = #{adName,jdbcType=VARCHAR}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+</mapper>

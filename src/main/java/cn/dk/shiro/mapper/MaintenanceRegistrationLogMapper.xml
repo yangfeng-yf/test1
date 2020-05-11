@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.MaintenanceRegistrationLogMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.MaintenanceRegistrationLog">
+    <id column="m_id" jdbcType="INTEGER" property="mId" />
+    <result column="m_c_count_id" jdbcType="INTEGER" property="mCCountId" />
+    <result column="m_user" jdbcType="VARCHAR" property="mUser" />
+    <result column="m_salesman" jdbcType="VARCHAR" property="mSalesman" />
+    <result column="m_service" jdbcType="VARCHAR" property="mService" />
+    <result column="m_stuta" jdbcType="INTEGER" property="mStuta" />
+    <result column="m_regitertime" jdbcType="TIMESTAMP" property="mRegiterTime" />
+    <result column="m_starttime" jdbcType="TIMESTAMP" property="mStartTime" />
+    <result column="m_endtime" jdbcType="TIMESTAMP" property="mEndTime" />
+    <result column="m_remark" jdbcType="VARCHAR" property="mRemark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    m_id, m_c_count_id, m_user, m_salesman, m_service, m_stuta, m_regitertime, m_starttime, m_endtime, m_remark
+  </sql>
+
+  <!--条件查询维修记录-->
+  <select id="findMrInfoByCondi" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from maintenance_registration_log
+    where
+    <if test="param1 == 'm_c_count_id'">
+      m_c_count_id
+    </if>
+    <if test="param1 == 'm_u_id'">
+      m_u_id
+    </if>
+    <if test="param1 == 'm_salesman_id'">
+      m_salesman_id
+    </if>
+    <if test="param1 == 'm_maintenanceman_id'">
+      m_maintenanceman_id
+    </if>
+    <if test="param1 == 'm_type'">
+      m_type
+    </if>
+    =  #{value1}
+  </select>
+  <!--多条件查询维修记录-->
+  <select id="findMrInfoByObj" parameterType="cn.dk.shiro.domain.MaintenanceRegistrationLog" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from maintenance_registration_log
+    where
+    <if test="mId != null">
+      m_id = #{mId} AND
+    </if>
+    <if test="mCCountId != null">
+      m_c_count_id = #{mCCountId} AND
+    </if>
+    <if test="mUId != null">
+      m_u_id= #{mUId} AND
+    </if>
+    <if test="mSalesmanId != null">
+      m_salesman_id= #{mSalesmanId} AND
+    </if>
+    <if test="mRegistrationTime != null">
+      m_registration_time = #{mRegistrationTime} AND
+    </if>
+    <if test="mMaintenancemanId != null">
+      m_maintenanceman_id = #{mMaintenancemanId} AND
+    </if>
+    <if test="mEnterfactoryTime != null">
+      m_enterfactory_time = #{mEnterfactoryTime} AND
+    </if>
+    <if test="mLeavefactoryTime != null">
+      m_leavefactory_time = #{mLeavefactoryTime} AND
+    </if>
+    <if test="mType != null">
+      m_type= #{mType} AND
+    </if>
+    <if test="mRemark != null">
+      m_remark= #{mRemark} AND
+    </if>
+    1 = 1
+  </select>
+
+
+  <!--查询所有维修记录-->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from maintenance_registration_log
+  </select>
+
+
+
+  <select id="findAllType" resultType="java.util.Map"  >
+    select count(*) value ,m_type name
+    from maintenance_registration_log
+    group by m_type
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from maintenance_registration_log
+    where m_id = #{mId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from maintenance_registration_log
+    where m_id = #{mId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dk.shiro.domain.MaintenanceRegistrationLog">
+    insert into maintenance_registration_log (m_id, m_c_count_id, m_user,m_salesman, m_service,
+    m_stuta,m_regitertime, m_starttime,m_endtime, m_remark)
+    values (#{mId,jdbcType=INTEGER}, #{mCCountId,jdbcType=INTEGER}, #{mUser,jdbcType=VARCHAR},
+      #{mSalesman,jdbcType=VARCHAR}, #{mService,jdbcType=VARCHAR}, #{mStuta,jdbcType=INTEGER},
+      #{mRegiterTime,jdbcType=TIMESTAMP}, #{mStartTime,jdbcType=TIMESTAMP},
+      #{mEndTime,jdbcType=TIMESTAMP}, #{mRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.MaintenanceRegistrationLog">
+    insert into maintenance_registration_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="mId != null">
+        m_id,
+      </if>
+      <if test="mCCountId != null">
+        m_c_count_id,
+      </if>
+      <if test="mUId != null">
+        m_u_id,
+      </if>
+      <if test="mSalesmanId != null">
+        m_salesman_id,
+      </if>
+      <if test="mRegistrationTime != null">
+        m_registration_time,
+      </if>
+      <if test="mMaintenancemanId != null">
+        m_maintenanceman_id,
+      </if>
+      <if test="mEnterfactoryTime != null">
+        m_enterfactory_time,
+      </if>
+      <if test="mLeavefactoryTime != null">
+        m_leavefactory_time,
+      </if>
+      <if test="mType != null">
+        m_type,
+      </if>
+      <if test="mRemark != null">
+        m_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="mId != null">
+        #{mId,jdbcType=INTEGER},
+      </if>
+      <if test="mCCountId != null">
+        #{mCCountId,jdbcType=INTEGER},
+      </if>
+      <if test="mUId != null">
+        #{mUId,jdbcType=INTEGER},
+      </if>
+      <if test="mSalesmanId != null">
+        #{mSalesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="mRegistrationTime != null">
+        #{mRegistrationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mMaintenancemanId != null">
+        #{mMaintenancemanId,jdbcType=INTEGER},
+      </if>
+      <if test="mEnterfactoryTime != null">
+        #{mEnterfactoryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mLeavefactoryTime != null">
+        #{mLeavefactoryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mType != null">
+        #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="mRemark != null">
+        #{mRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.MaintenanceRegistrationLog">
+    update maintenance_registration_log
+    <set>
+      <if test="mCCountId != null">
+        m_c_count_id = #{mCCountId,jdbcType=INTEGER},
+      </if>
+      <if test="mUId != null">
+        m_u_id = #{mUId,jdbcType=INTEGER},
+      </if>
+      <if test="mSalesmanId != null">
+        m_salesman_id = #{mSalesmanId,jdbcType=INTEGER},
+      </if>
+      <if test="mRegistrationTime != null">
+        m_registration_time = #{mRegistrationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mMaintenancemanId != null">
+        m_maintenanceman_id = #{mMaintenancemanId,jdbcType=INTEGER},
+      </if>
+      <if test="mEnterfactoryTime != null">
+        m_enterfactory_time = #{mEnterfactoryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mLeavefactoryTime != null">
+        m_leavefactory_time = #{mLeavefactoryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mType != null">
+        m_type = #{mType,jdbcType=INTEGER},
+      </if>
+      <if test="mRemark != null">
+        m_remark = #{mRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.MaintenanceRegistrationLog">
+    update maintenance_registration_log
+    set m_c_count_id = #{mCCountId,jdbcType=INTEGER},
+      m_u_id = #{mUId,jdbcType=INTEGER},
+      m_salesman_id = #{mSalesmanId,jdbcType=INTEGER},
+      m_registration_time = #{mRegistrationTime,jdbcType=TIMESTAMP},
+      m_maintenanceman_id = #{mMaintenancemanId,jdbcType=INTEGER},
+      m_enterfactory_time = #{mEnterfactoryTime,jdbcType=TIMESTAMP},
+      m_leavefactory_time = #{mLeavefactoryTime,jdbcType=TIMESTAMP},
+      m_type = #{mType,jdbcType=INTEGER},
+      m_remark = #{mRemark,jdbcType=VARCHAR}
+    where m_id = #{mId,jdbcType=INTEGER}
+  </update>
+
+
+  <update id="updateTypeAndInDateByPrimaryKey" parameterType="java.lang.Integer">
+    update maintenance_registration_log
+    set
+    m_enterfactory_time = #{mdate,jdbcType=TIMESTAMP},
+    m_maintenanceman_id = #{mMaintenancemanId,jdbcType=INTEGER},
+    m_type = #{type,jdbcType=INTEGER}
+    where m_id = #{countId,jdbcType=INTEGER}
+  </update>
+
+
+  <update id="updateTypeAndOutDateByPrimaryKey" parameterType="java.lang.Integer">
+    update maintenance_registration_log
+    set
+    m_maintenanceman_id = #{mMaintenancemanId,jdbcType=INTEGER},
+    m_leavefactory_time = #{mdate,jdbcType=TIMESTAMP},
+    m_type = #{type,jdbcType=INTEGER}
+
+    where m_id = #{countId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

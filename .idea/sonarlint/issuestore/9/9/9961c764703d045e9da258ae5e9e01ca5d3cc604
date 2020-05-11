@@ -1,0 +1,32 @@
+
+|squid:S1488"[Immediately return this expression instead of assigning it to the temporary variable "all".(¾ıñøÿÿÿÿÿ8şÀ˜Ó›.
+Á%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(ô®~8şÀ˜Ó›.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(“•Ú„8şÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(‹­éòøÿÿÿÿ8şÀ˜Ó›.
+‡squid:S1488"fImmediately return this expression instead of assigning it to the temporary variable "accessoryInfos".(Ï¥›øÿÿÿÿ8şÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ºèº¹úÿÿÿÿ8şÀ˜Ó›.
+^squid:S1858"="get" returns a string, there's no need to call "toString()".(ª©æ¸úÿÿÿÿ8şÀ˜Ó›.
+Ç%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(è»ˆåûÿÿÿÿ8şÀ˜Ó›.
+jsquid:UselessImportCheck"<Remove this unused import 'cn.dk.shiro.domain.SupplierInfo'.(Ó’ˆüÿÿÿÿ8şÀ˜Ó›.
+‡squid:S1488"fImmediately return this expression instead of assigning it to the temporary variable "accessoryInfos".(‚ÇŞ¸øÿÿÿÿ8şÀ˜Ó›.
+Gsquid:S1481"&Remove this unused "x" local variable.(´ƒ˜¹ûÿÿÿÿ8şÀ˜Ó›.
+Â%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(–Õÿ¶8şÀ˜Ó›.
+Ç%squid:RedundantThrowsDeclarationCheck"‹Remove the declaration of thrown exception 'com.fasterxml.jackson.core.JsonProcessingException', as it cannot be thrown from method's body.(Ã¿ñµüÿÿÿÿ8şÀ˜Ó›.
+^squid:S1858"="get" returns a string, there's no need to call "toString()".(ìêúëşÿÿÿÿ8şÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ó³åĞúÿÿÿÿ8şÀ˜Ó›.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(üİå8şÀ˜Ó›.
+T
+squid:S106"9Replace this use of System.out or System.err by a logger.(¼ÊÎ8şÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(êû×ùÿÿÿÿ8şÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ìêúëşÿÿÿÿ8şÀ˜Ó›.
+Vsquid:S1854"5Remove this useless assignment to local variable "x".(´ƒ˜¹ûÿÿÿÿ8şÀ˜Ó›.
+squid:S1488"eImmediately return this expression instead of assigning it to the temporary variable "accessoryInfo".(Â©†â8şÀ˜Ó›.
+Y
+squid:S106"9Replace this use of System.out or System.err by a logger.(ª©æ¸úÿÿÿÿ8şÀ˜Ó›.

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dk.shiro.dao.AccessoryInfoMapper">
+  <resultMap id="BaseResultMap" type="cn.dk.shiro.domain.AccessoryInfo">
+    <id column="a_id" jdbcType="INTEGER" property="aId" />
+    <result column="a_name" jdbcType="VARCHAR" property="aName" />
+    <result column="a_num" jdbcType="INTEGER" property="aNum" />
+    <result column="a_s_id" jdbcType="INTEGER" property="aSId" />
+    <result column="a_describe" jdbcType="VARCHAR" property="aDescribe" />
+    <result column="a_last_supply_time" jdbcType="TIMESTAMP" property="aLastSupplyTime" />
+    <result column="a_sale_price" jdbcType="DOUBLE" property="aSalePrice" />
+    <result column="a_incoming_price" jdbcType="DOUBLE" property="aIncomingPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    a_id, a_name, a_num, a_s_id, a_describe, a_last_supply_time, a_sale_price, a_incoming_price
+  </sql>
+
+  <!--查询所有配件信息-->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from accessory_info
+  </select>
+  <!--条件查询配件信息-->
+  <select id="findByCondi" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from accessory_info
+    WHERE
+    <if test="param1 == 'a_id'">
+      a_id
+    </if>
+    <if test="param1 == 'a_name'">
+      a_name
+    </if>
+    <if test="param1 == 'a_incoming_price'">
+      a_incoming_price
+    </if>
+    <if test="param1 == 'a_s_id'">
+      a_s_id
+    </if>
+    <if test="param1 == 'a_sale_price'">
+      a_sale_price
+    </if>
+    =  #{value1}
+  </select>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from accessory_info
+    where a_id = #{aId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from accessory_info
+    where a_id = #{aId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.dk.shiro.domain.AccessoryInfo">
+    insert into accessory_info (a_id, a_name, a_num, 
+      a_s_id, a_describe, a_last_supply_time, 
+      a_sale_price, a_incoming_price)
+    values (#{aId,jdbcType=INTEGER}, #{aName,jdbcType=VARCHAR}, #{aNum,jdbcType=INTEGER}, 
+      #{aSId,jdbcType=INTEGER}, #{aDescribe,jdbcType=VARCHAR}, #{aLastSupplyTime,jdbcType=TIMESTAMP}, 
+      #{aSalePrice,jdbcType=DOUBLE}, #{aIncomingPrice,jdbcType=DOUBLE})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.dk.shiro.domain.AccessoryInfo">
+    insert into accessory_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        a_id,
+      </if>
+      <if test="aName != null">
+        a_name,
+      </if>
+      <if test="aNum != null">
+        a_num,
+      </if>
+      <if test="aSId != null">
+        a_s_id,
+      </if>
+      <if test="aDescribe != null">
+        a_describe,
+      </if>
+      <if test="aLastSupplyTime != null">
+        a_last_supply_time,
+      </if>
+      <if test="aSalePrice != null">
+        a_sale_price,
+      </if>
+      <if test="aIncomingPrice != null">
+        a_incoming_price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aId != null">
+        #{aId,jdbcType=INTEGER},
+      </if>
+      <if test="aName != null">
+        #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aNum != null">
+        #{aNum,jdbcType=INTEGER},
+      </if>
+      <if test="aSId != null">
+        #{aSId,jdbcType=INTEGER},
+      </if>
+      <if test="aDescribe != null">
+        #{aDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="aLastSupplyTime != null">
+        #{aLastSupplyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aSalePrice != null">
+        #{aSalePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="aIncomingPrice != null">
+        #{aIncomingPrice,jdbcType=DOUBLE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.dk.shiro.domain.AccessoryInfo">
+    update accessory_info
+    <set>
+      <if test="aName != null">
+        a_name = #{aName,jdbcType=VARCHAR},
+      </if>
+      <if test="aNum != null">
+        a_num = #{aNum,jdbcType=INTEGER},
+      </if>
+      <if test="aSId != null">
+        a_s_id = #{aSId,jdbcType=INTEGER},
+      </if>
+      <if test="aDescribe != null">
+        a_describe = #{aDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="aLastSupplyTime != null">
+        a_last_supply_time = #{aLastSupplyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="aSalePrice != null">
+        a_sale_price = #{aSalePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="aIncomingPrice != null">
+        a_incoming_price = #{aIncomingPrice,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.dk.shiro.domain.AccessoryInfo">
+    update accessory_info
+    set a_name = #{aName,jdbcType=VARCHAR},
+      a_num = #{aNum,jdbcType=INTEGER},
+      a_s_id = #{aSId,jdbcType=INTEGER},
+      a_describe = #{aDescribe,jdbcType=VARCHAR},
+      a_last_supply_time = #{aLastSupplyTime,jdbcType=TIMESTAMP},
+      a_sale_price = #{aSalePrice,jdbcType=DOUBLE},
+      a_incoming_price = #{aIncomingPrice,jdbcType=DOUBLE}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateNumByPrimaryKey" parameterType="java.lang.Integer">
+    update accessory_info
+    set
+    a_num = #{aNum,jdbcType=INTEGER}
+    where a_id = #{aId,jdbcType=INTEGER}
+  </update>
+</mapper>
